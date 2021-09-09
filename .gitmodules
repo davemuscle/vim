@@ -1,0 +1,6 @@
+[submodule ".vim/autoload/plugged/syntastic"]
+	path = .vim/autoload/plugged/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule ".vim/autoload/plugged/vim-code-dark"]
+	path = .vim/autoload/plugged/vim-code-dark
+	url = https://github.com/tomasiser/vim-code-dark.git
