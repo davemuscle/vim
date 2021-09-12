@@ -14,8 +14,7 @@ set ttyfast
 :imap <C-a> <Home>
 :imap <C-e> <End>
 
-let g:syntastic_quiet_messages = { 'regex': 'not found in library "work"' }
-let g:syntastic_quiet_messages = { 'regex': 'has changed and must be reanalysed' }
+let g:syntastic_quiet_messages = { "regex": ['not found in library "work"', 'has changed and must be reanalysed'] }
 
 set clipboard=unnamedplus
 
