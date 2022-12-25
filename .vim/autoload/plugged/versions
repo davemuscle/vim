@@ -1,6 +1,0 @@
-syntastic: commit 97bf9ec720662af51ae403b6dfe720d4a24bfcbc (grafted, HEAD -> master, origin/master, origin/HEAD)
-vim-code-dark: commit 670fed53a2ae67542a78ef7b642f4aca6b6326dc (grafted, HEAD -> master, origin/master, origin/HEAD)
-vim-easy-align: commit 12dd6316974f71ce333e360c0260b4e1f81169c3 (grafted, HEAD -> master, origin/master, origin/HEAD
-
-Syntastic has local modifications to allow SystemVerilog checking with Modelsim/Questasim from:
-https://www.vim.org/scripts/script.php?script_id=5859
