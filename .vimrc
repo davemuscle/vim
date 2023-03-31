@@ -39,25 +39,12 @@ map <C-e> <End>
 imap <C-a> <Home>
 imap <C-e> <End>
 
-"let g:syntastic_verilog_checkers = ['iverilog']
-"let g:syntastic_verilog_checkers = ['verilator']
-"let g:syntastic_vhdl_checkers = ['vcom']
-"let g:syntastic_vhdl_vcom_args="-work ~/syntastic_sv/work -2008"
-"let g:syntastic_verilog_checkers = ['vlog']
-"let g:syntastic_verilog_vlog_args="-work ~/syntastic_sv/work"
-"let g:syntastic_systemverilog_checkers = ['vlog']
-"let g:syntastic_systemverilog_vlog_args="-sv -work ~/syntastic_sv/work"
-"let g:syntastic_quiet_messages = { "regex": ['not found in library "work"', 'has changed and must be reanalysed', 'was not analysed', '.h: No such file or directory', 'Extra checking for conflicts with always_comb and always_latch variables is done at vopt time', 'Cannot open `include file'] }
-"let g:syntastic_vhdl_ghdl_args = "--std=08 -frelaxed"
-
 let g:ale_linters = {'verilog': ['vlog'], 'systemverilog': ['vlog'], 'fortran': []}
+"let g:ale_linters = {'verilog': ['vlog'], 'systemverilog': ['verilator'], 'fortran': []}
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_verilog_vlog_options = '-suppress vlog-13233 -quiet -lint -work ~/ale_sv/work ' . system('monolith')
 let g:ale_systemverilog_vlog_options = '-suppress vlog-13233 -sv -quiet -lint -work ~/ale_sv/work ' . system('monolith')
-
-autocmd BufRead,BufNewFile *.f setlocal syntax=OFF
-autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 
 " glob all 'include' directories under the current repository
 "let custom_cc_include_paths = system('monolith include')
@@ -84,20 +71,30 @@ set hlsearch
 let b:match_words = '\<task\>:\<endtask\>, \<begin\>:\<end\>, \<fork\>:\<join\>, \<case\>:\<endcase\>'
 let b_verilog_indent_verbose = 1
 
-au BufReadPost *.inc set syntax=make
-
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
+
 filetype plugin indent on
-filetype plugin on
+
+autocmd BufRead,BufNewFile *.f setlocal syntax=OFF
+autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+autocmd BufRead,BufNewFile,BufReadPost *Makefile.* set filetype=make
+
+
+nmap gf <C-W>gf
 
 "nmap Zio vip :s/input/dnput/<CR> vip :s/output/input /<CR> vip :s/dnput /output/<CR>
 "nmap Zio vip:s/\v(input \|output)/\={'input ':'output','output':'input '}[submatch(0)]/g<CR>:noh<CR>
 nmap Zio vip:s/\v(input \|output)/\={'input ':'output','output':'input '}[submatch(0)]/g<CR>:noh<CR>
 
+nmap Zh i//<Esc>98a-<Esc>yyPo<Esc>i// 
+nmap Zm ZhMODULE<Esc>)omodule MODULE #(<CR>)(<CR>);<CR>endmodule<Esc>
+
 nmap Zff oalways_ff @(posedge clk or negedge rst_n) begin<CR>if(!rst_n) begin<CR>end<CR>else begin<CR>end<CR>end<CR><Esc>(
 nmap Z== gg=G
+
+nmap Zpa vii:Tab/(<Esc>gv:s/ ( /(<CR>
 
 "nmap Zdc vip:s/ *\/\/.*$//<CR>(:noh<CR>
 "nmap Zaa gaip<Space>gaip-<Space>
